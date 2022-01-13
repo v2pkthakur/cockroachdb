@@ -2,8 +2,8 @@
 apiVersion: apps.open-cluster-management.io/v1
 kind: Channel
 metadata:
-  name: transaction-service-app-latest
-  namespace: bank-infra
+  name: crdb
+  namespace: test-crdb
 spec:
   pathname: https://github.com/v2pkthakur/cockroachdb.git
   type: GitHub
