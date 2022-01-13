@@ -1,0 +1,28 @@
+apiVersion: v1
+items:
+- apiVersion: crdb.cockroachlabs.com/v1alpha1
+  kind: CrdbCluster
+  metadata:
+    name: crdb-tls-example
+    namespace: openshift-operators
+  spec:
+    cockroachDBVersion: v21.1.11
+    dataStore:
+      pvc:
+        source:
+          claimName: ""
+        spec:
+          accessModes:
+          - ReadWriteOnce
+          resources:
+            requests:
+              storage: 10Gi
+          volumeMode: Filesystem
+      supportsAutoResize: false
+    grpcPort: 26258
+    httpPort: 8080
+    maxUnavailable: 1
+    nodes: 3
+    resources: {}
+    sqlPort: 26257
+    tlsEnabled: true
