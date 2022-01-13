@@ -1,0 +1,13 @@
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  labels:
+    app: crdb
+  name: crdb-placement-1
+  namespace: test-crdb
+spec:
+  clusterSelector:
+    matchLabels:
+      'environment': 'dev'
+      
