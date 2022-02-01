@@ -15,8 +15,6 @@ cockroachdb:
     # repository: cockroachdb/cockroach-unstable
     # tag: "v21.1.0-rc.2"    
   storage:
-    persistentVolume:
-      storageClass: cockroachdb
   cluster: ${cluster}
   uid: ${uid}
   conf:
