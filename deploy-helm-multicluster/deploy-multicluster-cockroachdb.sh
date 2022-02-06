@@ -44,24 +44,15 @@ envsubst < ./values.templ.yaml > /tmp/cluster3-values.yaml
 helm --kube-context ${cluster3_context} upgrade cockroachdb .  -i --create-namespace -n cockroachdb -f /tmp/cluster3-values.yaml
 
 
-<<<<<<< HEAD
 export tools_pod=$(oc --context ${cluster1_context} get pods -n cockroachdb | grep tools | awk '{print $1}')
 oc --context ${cluster1_context} exec $tools_pod -c tools -n cockroachdb -- /cockroach/cockroach init --certs-dir=/crdb-certs --host cockroachdb-0.${cluster1}.cockroachdb.cockroachdb.svc.clusterset.local
 oc --context ${cluster1_context} exec $tools_pod -c tools -n cockroachdb -- /cockroach/cockroach node status --certs-dir=/crdb-certs --host cockroachdb-0.${cluster1}.cockroachdb.cockroachdb.svc.clusterset.local
 
 oc --context ${cluster1_context} exec $tools_pod -c tools -n cockroachdb -- /cockroach/cockroach sql --execute='CREATE USER dba WITH PASSWORD dba;' --certs-dir=/crdb-certs --host cockroachdb-0.${cluster1}.cockroachdb.cockroachdb.svc.clusterset.local
-=======
-oc --context ${cluster1_context} exec $tools_pod -c tools -n cockroachdb -- /cockroach/cockroach init --certs-dir=/crdb-certs --host cockroachdb-0.${cluster1}.cockroachdb.multicluster-cockroachdb.svc.clusterset.local
+oc --context ${cluster1_context} exec $tools_pod -c tools -n cockroachdb -- /cockroach/cockroach sql --execute='GRANT admin TO dba WITH ADMIN OPTION;' --certs-dir=/crdb-certs --host cockroachdb-0.${cluster1}.cockroachdb.cockroachdb.svc.clusterset.local
 
-oc --context ${cluster1_context} exec $tools_pod -c tools -n cockroachdb -- /cockroach/cockroach node status --certs-dir=/crdb-certs --host cockroachdb-0.${cluster1}.cockroachdb.multicluster-cockroachdb.svc.clusterset.local
 
-export tools_pod=$(oc --context ${cluster1_context} get pods -n cockroachdb | grep tools | awk '{print $1}')
-oc --context ${cluster1_context} exec $tools_pod -c tools -n cockroachdb -- /cockroach/cockroach sql --execute='CREATE USER dba WITH PASSWORD dba;' --certs-dir=/crdb-certs --host cockroachdb-0.${cluster1}.cockroachdb.multicluster-cockroachdb.svc.clusterset.local
->>>>>>> 44191c8d79dc990b172104f6e0a570563167b59e
-
-oc --context ${cluster1_context} exec $tools_pod -c tools -n cockroachdb -- /cockroach/cockroach sql --execute='GRANT admin TO dba WITH ADMIN OPTION;' --certs-dir=/crdb-certs --host cockroachdb-0.${cluster1}.cockroachdb.multicluster-cockroachdb.svc.clusterset.local
 
 oc --context ${cluster1_context} exec $tools_pod -c tools -n cockroachdb -- /cockroach/cockroach sql --certs-dir=/crdb-certs --host cockroachdb-0.${cluster1}.cockroachdb.cockroachdb.svc.clusterset.local --echo-sql --execute='SET CLUSTER SETTING cluster.organization = '\""${cluster_organization}"\"';'
-
 oc --context ${cluster1_context} exec $tools_pod -c tools -n cockroachdb -- /cockroach/cockroach sql  --certs-dir=/crdb-certs --host cockroachdb-0.${cluster1}.cockroachdb.cockroachdb.svc.clusterset.local --echo-sql --execute='SET CLUSTER SETTING enterprise.license = '\""${enterprise_license}"\"';'
 
