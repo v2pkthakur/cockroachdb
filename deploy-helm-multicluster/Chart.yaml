@@ -1,5 +1,5 @@
 apiVersion: v2
-name: cockroachdb-multicluster
+name: cockroachdb
 description: A Helm chart to help deploy cockroach-db to multiple clusters
 
 # A chart can be either an 'application' or a 'library' chart.

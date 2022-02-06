@@ -20,15 +20,15 @@ cockroachdb:
     cache: 8GiB
     max-sql-memory: 8GiB
     join: 
-      - cockroachdb-0.${cluster1}.cockroachdb.multicluster-cockroachdb.svc.clusterset.local
-      - cockroachdb-1.${cluster1}.cockroachdb.multicluster-cockroachdb.svc.clusterset.local
-      - cockroachdb-2.${cluster1}.cockroachdb.multicluster-cockroachdb.svc.clusterset.local
-      - cockroachdb-0.${cluster2}.cockroachdb.multicluster-cockroachdb.svc.clusterset.local
-      - cockroachdb-1.${cluster2}.cockroachdb.multicluster-cockroachdb.svc.clusterset.local
-      - cockroachdb-2.${cluster2}.cockroachdb.multicluster-cockroachdb.svc.clusterset.local
-      - cockroachdb-0.${cluster3}.cockroachdb.multicluster-cockroachdb.svc.clusterset.local
-      - cockroachdb-1.${cluster3}.cockroachdb.multicluster-cockroachdb.svc.clusterset.local
-      - cockroachdb-2.${cluster3}.cockroachdb.multicluster-cockroachdb.svc.clusterset.local
+      - cockroachdb-0.${cluster1}.cockroachdb.cockroachdb.svc.clusterset.local
+      - cockroachdb-1.${cluster1}.cockroachdb.cockroachdb.svc.clusterset.local
+      - cockroachdb-2.${cluster1}.cockroachdb.cockroachdb.svc.clusterset.local
+      - cockroachdb-0.${cluster2}.cockroachdb.cockroachdb.svc.clusterset.local
+      - cockroachdb-1.${cluster2}.cockroachdb.cockroachdb.svc.clusterset.local
+      - cockroachdb-2.${cluster2}.cockroachdb.cockroachdb.svc.clusterset.local
+      - cockroachdb-0.${cluster3}.cockroachdb.cockroachdb.svc.clusterset.local
+      - cockroachdb-1.${cluster3}.cockroachdb.cockroachdb.svc.clusterset.local
+      - cockroachdb-2.${cluster3}.cockroachdb.cockroachdb.svc.clusterset.local
   fullnameOverride: cockroachdb
   statefulset:
     replicas: 3
